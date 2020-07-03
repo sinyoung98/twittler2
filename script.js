@@ -6,4 +6,20 @@ console.log(DATA)
 console.log(generateNewTweet());
 creatDatatweets();
 document.querySelector('#btn-tweet').onclick = creatNewTweet;
-document.getElementById('test').innerHTML = 'hello twittler, check developer console!';
+document.querySelector('.btn-check').onclick = creatRandomtweet;
+
+let elements = [];
+elements.push(document.querySelectorAll('.name'));
+
+for (let i = 0; i < elements.length; i++) {
+  elements[i].onclick = filterTweet;
+} 
+/*
+elements.filter(filterTweet)
+//필터를　사용해서　
+
+function isBigEnough(value) {
+  return value >= 10;
+}
+let filtered = [12, 5, 8, 130, 44].filter(isBigEnough); // [12, 130, 44]
+*/

@@ -51,3 +51,70 @@ Date.prototype.format = function() {
   var format = [yyyy, month, dd].join('-') + ' ' + [HH, mm, ss].join(':');
   return format;
 }
+
+
+//TODO: DATA를　출력하는　함수를　만들어야함．　
+/*알고리즘　
+1. template을　만듬
+２．template을　출력하는　함수를　만들고
+3.　반복문으로　함수자체를　반복함．
+*/
+
+function creatDatatweet(DATA){
+  //삽입할　부모태그를　먼저　선택
+  let template = document.querySelector('#template');
+  //템플릿을　가져옴
+  let tmpl = document.querySelector('.datatweet');
+　//템플릿을　복사
+  let element = document.importNode(tmpl.content, true);
+  //element의　name, comment, day의　값을　넣어주는걸
+  element.querySelector('.name').textContent = DATA.user;
+  element.querySelector('.day').textContent = DATA.created_at;
+  element.querySelector('.comment').textContent = DATA.message;
+  
+  template.appendChild(element);
+
+}
+function creatDatatweets(){
+  return DATA.forEach(creatDatatweet);
+}
+
+//TODO: 새로운　트윗을　만드는　함수를　작성
+/* 알고리즘
+1. text의　인풋　값을　가져와야함．　
+２．인풋　값을　출력하는　템플릿을　만듬
+３．이걸　출력하는　함수를　만들기．　
+4. day로　현재시간을　받아서　값으로　설정해야　한다．　
+*/
+
+let today = new Date();   
+
+let year = today.getFullYear(); // 년도
+let month = today.getMonth() + 1;  // 월
+let date = today.getDate();  // 날짜
+let day = today.getDay();  // 요일
+
+let formatday = year+"-"+(("00"+month.toString()).slice(-2))+"-"+(("00"+day.toString()).slice(-2));
+
+let hours = today.getHours(); // 시
+let minutes = today.getMinutes();  // 분
+let seconds = today.getSeconds();  // 초
+
+
+function creatNewTweet(){
+  let template = document.querySelector('#template');
+  //템플릿을　가져옴
+  let tmpl = document.querySelector('.datatweet');
+　//템플릿을　복사
+  let element = document.importNode(tmpl.content, true);
+  //element의　name, comment, day의　값을　넣어주는걸
+  element.querySelector('.name').textContent = document.querySelector('#usernameinput').value
+  element.querySelector('.day').textContent = formatday + ' ' + hours + ':' + minutes + ':' + seconds;
+  element.querySelector('.comment').textContent = document.querySelector('#write-box').value 
+  
+  template.prepend(element);
+  //값을　다시　지워줘야함．　
+  document.querySelector('#usernameinput').value　=　"";
+  document.querySelector('#write-box').value = "";
+}
+

@@ -118,3 +118,48 @@ function creatNewTweet(){
   document.querySelector('#write-box').value = "";
 }
 
+// 랜덤 생성
+// generateNewTweet()
+function creatRandomtweet() {
+  let template = document.querySelector('#template');
+  //템플릿을　가져옴
+  let tmpl = document.querySelector('.datatweet');
+　//템플릿을　복사
+  let element = document.importNode(tmpl.content, true);
+  
+  element.querySelector('.name').textContent = generateNewTweet().user;
+  element.querySelector('.day').textContent = formatday + ' ' + hours + ':' + minutes + ':' + seconds;
+  element.querySelector('.comment').textContent =  generateNewTweet().message;
+  
+  template.prepend(element);
+}
+
+// TODO: 필터링 : 트윗작성자의　이름을　클릭하면　해당사용자가　작성한　트윗빼고는　전부　삭제．　
+// input 클릭한 이름의 textContent
+
+//알고리즘
+/*
+onclick = filterTweet
+filterTweet함수가　하는　일은　다　삭제．　
+*/
+
+function filterTweet() {
+  //해당사용자가　작성한　트윗빼고는　전부　삭제
+ //foreach로　반복비교후　삭제
+ if (elements !== elements[i]){
+  let template = document.querySelector('#template');　 
+ for(let i = template.childNodes.length-1; i >= 0; i--){
+   template.removeChild(template.childNodes[i]);
+ }
+ }
+;
+}
+/*
+if (elements !== elements[i]){
+  let template = document.querySelector('#template');　 
+ for(let i = template.childNodes.length-1; i >= 0; i--){
+   template.removeChild(template.childNodes[i]);
+ }
+ }
+*/
+
